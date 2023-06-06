@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "123229ee-3f57-4679-bd50-45ced83f636a",
+		"name": "keycloak-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22146116"
+	},
+	"item": [
+		{
+			"name": "get access token for admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "admin-cli",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{keycloak-server}}/master/protocol/openid-connect/token",
+					"host": [
+						"{{keycloak-server}}"
+					],
+					"path": [
+						"master",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get access token for user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "test.user",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "webapp",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{keycloak-server}}/{{realm}}/protocol/openid-connect/token",
+					"host": [
+						"{{keycloak-server}}"
+					],
+					"path": [
+						"{{realm}}",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get realmRole mappings of user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyUVdGSHZpLVloWmlYV2dxYkNEMl9BMG9QWHZzbncyX0xsWXhmY0Z3eHhrIn0.eyJleHAiOjE2NjAyMjM0MzMsImlhdCI6MTY2MDIyMzM3MywianRpIjoiMjhlMzRmMWEtMzk2ZS00NjU0LTliMzAtNjgwN2MzOTkxYjY4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjUzYmFlYmM1LTU5N2UtNDg2OC05Y2JjLTgxOTNiOWI4MmQ0NiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiI2NjM0MWEwZS01ZWQyLTQwOTUtYjYxZC1mOTIwZjI3OTBlNGYiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.XYyP9iVmMwfbtfPY4HQdhLS2jNAs5ztNq-MbcpghLJujRPIVoauoKrnLaIOO7B44_53fVmFDsz5YOOlw75nR0PAJyqP8fEYsoYn7aTs1tw0T5JHUCy-MwCGoyywj7-6HKpm8z7HS6xZGHZ6Cnhqg_od2IK_XivXMOe9TgYfUJeIvc-E5RzkZvNUBsaWbPTNNalp2jSkhXOY-nDcNaP-Cj4M4ntRb1dC4EoG8l2RUcONvnO6HyhC6avBjZxuFk_1SsNV-q75cnTlSv28sQgi9HKJp-PEj6MLjDY3i4806mZaMj0kiLtG0r7QR7KdGlWQu7pDX2SLKuw327COyJ0YUHQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/admin/realms/dental-clinic/users/7afa022b-0686-4898-bc40-521dfdc53b19/role-mappings/realm",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"admin",
+						"realms",
+						"dental-clinic",
+						"users",
+						"7afa022b-0686-4898-bc40-521dfdc53b19",
+						"role-mappings",
+						"realm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add realmRole to user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyUVdGSHZpLVloWmlYV2dxYkNEMl9BMG9QWHZzbncyX0xsWXhmY0Z3eHhrIn0.eyJleHAiOjE2NjAyMjI0NTksImlhdCI6MTY2MDIyMjM5OSwianRpIjoiZjY2ODQ2YWQtNzZhZC00YmI1LTk4ZTItZTY2YWI3MTlmMjBjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjUzYmFlYmM1LTU5N2UtNDg2OC05Y2JjLTgxOTNiOWI4MmQ0NiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiIwZGEyMjc2MC03ZDdkLTQ5YmMtYmEzMS1kYmNjNDU4ZDhiMTYiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.gP6wBcwTY5z-9xLCChOwyK2cJIps95WJ7YJXflPVH3fCR_YqMqlYm3CQP3s7M8Zv36N55PO513Iy8Lypu8dMo1jR-g1qwGFHK7bbFKtP4ACq5YuGOS_s-D9y0KVZ0_T-aI3HEFrB1meWTd5ULLuKpbD_nSyqEXDPKrH-bJgPA3jhylTMkwDzRq8CiQwL38QMdcQ53cwr3HL80P4Zvrqa-ZnBKXAk01cmIOnDgSzX3d_nc6zyy8tREosO1kcmv8qQgcHC2PSLf_rJblxiQknkBJyizBlHkN_TT5DwD-EjKbXzjnierODR6-6yM1Km3o0MdqitZMBDu3iADKrsEosxtQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"ROLE_DOCTOR\",\r\n        \"id\": \"df967048-1d71-4b18-b960-ecc334a7d161\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/admin/realms/dental-clinic/users/7afa022b-0686-4898-bc40-521dfdc53b19/role-mappings/realm",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"admin",
+						"realms",
+						"dental-clinic",
+						"users",
+						"7afa022b-0686-4898-bc40-521dfdc53b19",
+						"role-mappings",
+						"realm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all realmRoles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyUVdGSHZpLVloWmlYV2dxYkNEMl9BMG9QWHZzbncyX0xsWXhmY0Z3eHhrIn0.eyJleHAiOjE2NjAyMjM4MzAsImlhdCI6MTY2MDIyMzc3MCwianRpIjoiZjVjMDdmY2QtYmRlMC00YjEzLThmZTYtZTZjYzc4OTM4NmRlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjUzYmFlYmM1LTU5N2UtNDg2OC05Y2JjLTgxOTNiOWI4MmQ0NiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiIyNGUzMjczNy05OWRiLTRjZDYtYTY2Yy1kZjAzOTlhYmUyMGYiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.qq1aGU__RZSBkVRmwZUN9vLs7IOcBZ-4IzQPG_WvANQoKMKQMC0uw4zS3AhWdxSb2I6pm-mZfxAvPuDEHHxZZSvCv2kJ9Di0smQZQY3FhcZhcQ_4ZZr6MNV5mD27C5RgZ3g6mLr-KYikvKgaIqGGODd3zg1jXk00nCpEYXZZksVCeowmoZdRyJtmq0eNm0NXz0bPkX3rXseetq1xqgkJPOOa2pfQXw_lWow869oZ_YJfHZRNOGGZWTGfhPOmAxuMyyWVgSn8YcEdhsEobAPLaqsqxh2mjCmo3VkxjCl0C__3_XGJc4dWEzsy1mtyVt2F4WDytZG-fcil8tXXa3ENeg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/auth/admin/realms/dental-clinic/roles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"admin",
+						"realms",
+						"dental-clinic",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete realmRole of user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyUVdGSHZpLVloWmlYV2dxYkNEMl9BMG9QWHZzbncyX0xsWXhmY0Z3eHhrIn0.eyJleHAiOjE2NjAyMjk5NTYsImlhdCI6MTY2MDIyOTg5NiwianRpIjoiNDk3OGI0Y2QtYTc3MC00MTc5LTlkZDktN2M3YTc0ZGY0MGY5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjUzYmFlYmM1LTU5N2UtNDg2OC05Y2JjLTgxOTNiOWI4MmQ0NiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiI5NTBkOTI3Mi0yM2ExLTQyOGMtYTYxYy01NWJjN2QxMWE1OTciLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.dQ5MQ0GqA6gi6Wf548cuP1N7QwGK9cpnRISMB1OOsaWqQn1UDatBNtbtG_XdzD6EcDodU3wkJINGmMrvJCXxcrOcwKFtXYCELwRrs3sxEjY628oZf2FIcji0pNGGnRKFQ2trBbSTb2Z3Gx6cg6jYewK59qRN8mHxJ9L9V5D9PD8RsbdSANwK44SPZiw4PZgBOhNrFX8GgWWjvk7UqFzICffeoihA-IpA5nu6W-ADlI_qRNVlI5_1ba21s7tjl1vg1JEapUeabBfV_1ZvBOYv6RAvJfBVuv06MQZGHRtkRYGZPsBV09YrC3y_0So4mpLHLoK3H98_UCQU6QofvzXDbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"c04cfcfa-a0c9-417e-85b8-575419151dd8\",\r\n        \"name\": \"ROLE_USER\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/admin/realms/dental-clinic/users/43787cc9-d16f-4b56-8dd6-2990cd9c0853/role-mappings/realm",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"admin",
+						"realms",
+						"dental-clinic",
+						"users",
+						"43787cc9-d16f-4b56-8dd6-2990cd9c0853",
+						"role-mappings",
+						"realm"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "keycloak-server",
+			"value": "localhost:8080/auth/realms"
+		},
+		{
+			"key": "realm",
+			"value": "dental-clinic",
+			"type": "string"
+		}
+	]
+}
